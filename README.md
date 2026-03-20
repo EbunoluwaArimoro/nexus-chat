@@ -1,4 +1,4 @@
-# 🚀 Nexus Chat: Real-time Collaboration Engine
+# Nexus Chat: Real-time Collaboration Engine
 
 ---
 
