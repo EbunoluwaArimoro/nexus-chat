@@ -14,7 +14,7 @@
 ---
 
 ### **Project Description**
-This repository houses the Lab Phase project for the **Product Management for Software Engineers** course. **Nexus Chat** is a high-performance, real-time messaging application designed to facilitate seamless team communication and instant data synchronization.
+This repository houses the Lab Phase project for the **Product Management for Software Engineers** course. **Nexus Chat** is a high-performance, real-time messaging application designed to facilitate seamless team communication and instant data synchronization. Working on this project allowed us to bridge the gap between technical execution and product strategy.
 
 ### **Product Management Strategy**
 From a PM perspective, this project prioritizes the following **Core Pillars**:
