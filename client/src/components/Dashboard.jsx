@@ -48,7 +48,7 @@ const Dashboard = () => {
                         <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
                             <span className="text-white text-sm">N</span>
                         </div>
-                        Nexus Engine
+                        Nexus Chat
                     </div>
                     
                     <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ const Dashboard = () => {
                             <h3 className="text-sm font-bold text-white leading-tight truncate w-36">{username}</h3>
                             <div className="flex items-center gap-1.5 mt-1">
                                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span className="text-[10px] uppercase font-bold text-indigo-300 tracking-wider">System Admin</span>
+                                <span className="text-[10px] uppercase font-bold text-indigo-300 tracking-wider">Admin</span>
                             </div>
                         </div>
                     </div>
