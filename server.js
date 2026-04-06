@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const http = require('http');
 const { Server } = require('socket.io');
+const cors = require('cors');
 
 // 2. Initialize the Express application
 const app = express();
@@ -12,6 +13,8 @@ const app = express();
 // 3. Set up Middleware
 // This allows your app to understand JSON data sent from the frontend
 app.use(express.json());
+app.use(cors()); // Allows React to communicate with Express
+app.use('/api/auth', require('./routes/auth')); // Connects the auth routes
 
 // 4. Create an HTTP server using the Express app
 const server = http.createServer(app);
