@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // 1. We MUST import useNavigate
 import axios from 'axios';
-import '../App.css'; // Importing our new styles
+import '../App.css';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // 2. We MUST initialize the hook here
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+            
+            // Save the token so the user stays logged in
             localStorage.setItem('token', res.data.token);
-            alert('Login Successful! (Redirect coming in Phase 3)');
+            
+            // 3. SUCCESS! Instead of an alert, we move to the dashboard
+            navigate('/dashboard'); 
+            
         } catch (err) {
+            // We only show an alert if something goes wrong
             alert('Login failed. Please check your credentials.');
         }
     };

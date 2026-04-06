@@ -2,16 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import Dashboard from './components/Dashboard'; // Import Dashboard
 
 function App() {
     return (
         <Router>
-            <div>
-                <Routes>
-                    <Route path="/" element={<LoginForm />} />
-                    <Route path="/register" element={<RegisterForm />} />
-                </Routes>
-            </div>
+            <Routes>
+                <Route path="/" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterForm />} />
+                <Route path="/dashboard" element={<Dashboard />} /> {/* Add this line */}
+            </Routes>
         </Router>
     );
 }
