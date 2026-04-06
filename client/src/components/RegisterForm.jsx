@@ -10,7 +10,7 @@ const RegisterForm = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/auth/register', { username, password });
+            await axios.post('https://nexus-chat-backend-50v0.onrender.com/api/auth/register', { username, password });
             alert('Account created successfully!');
             navigate('/');
         } catch (err) {

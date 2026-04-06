@@ -13,7 +13,7 @@ const Dashboard = () => {
 
     const fetchRooms = useCallback(async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/rooms', {
+            const res = await axios.get('https://nexus-chat-backend-50v0.onrender.com/api/rooms', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setRooms(res.data);
@@ -25,7 +25,7 @@ const Dashboard = () => {
     const handleCreateRoom = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/rooms/create', roomForm, {
+            await axios.post('https://nexus-chat-backend-50v0.onrender.com/api/rooms/create', roomForm, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setRoomForm({ name: '', description: '', category: 'General' });

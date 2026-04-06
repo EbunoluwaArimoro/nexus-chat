@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://nexus-chat-backend-50v0.onrender.com');
 
 const ChatRoom = () => {
     const { roomId } = useParams();
@@ -28,13 +28,13 @@ const ChatRoom = () => {
         const fetchData = async () => {
             try {
                 // Fetch Room Info
-                const roomRes = await axios.get(`http://localhost:5000/api/rooms/${roomId}`, {
+                const roomRes = await axios.get(`https://nexus-chat-backend-50v0.onrender.com/api/rooms/${roomId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setRoomDetails(roomRes.data);
 
                 // Fetch Tasks for this room
-                const taskRes = await axios.get(`http://localhost:5000/api/tasks/${roomId}`);
+                const taskRes = await axios.get(`https://nexus-chat-backend-50v0.onrender.com/api/tasks/${roomId}`);
                 setTasks(taskRes.data);
             } catch (err) { console.error("Could not load room data", err); }
         };
@@ -60,7 +60,7 @@ const ChatRoom = () => {
             if (input.toLowerCase().startsWith('@task ')) {
                 const taskText = input.replace('@task ', '');
                 // Add to DB instead of just local state
-                axios.post('http://localhost:5000/api/tasks', { room: roomId, text: taskText, author: currentUser })
+                axios.post('https://nexus-chat-backend-50v0.onrender.com/api/tasks', { room: roomId, text: taskText, author: currentUser })
                      .then(res => setTasks([...tasks, res.data]))
                      .catch(err => console.log(err));
             }
@@ -72,7 +72,7 @@ const ChatRoom = () => {
         e.preventDefault();
         if (newTaskInput.trim()) {
             try {
-                const res = await axios.post('http://localhost:5000/api/tasks', {
+                const res = await axios.post('https://nexus-chat-backend-50v0.onrender.com/api/tasks', {
                     room: roomId,
                     text: newTaskInput,
                     author: currentUser
@@ -87,7 +87,7 @@ const ChatRoom = () => {
         try {
             // Note: MongoDB uses _id, so we check for both local 'id' and DB '_id'
             const taskId = id; 
-            const res = await axios.put(`http://localhost:5000/api/tasks/${taskId}`);
+            const res = await axios.put(`https://nexus-chat-backend-50v0.onrender.com/api/tasks/${taskId}`);
             setTasks(tasks.map(t => (t._id === id || t.id === id) ? res.data : t));
         } catch (err) { console.error("Error updating task"); }
     };
