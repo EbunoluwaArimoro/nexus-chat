@@ -136,7 +136,7 @@ const Dashboard = () => {
                         {username}'s Workspace
                     </h1>
                     <div className="text-xs font-bold text-gray-400 uppercase tracking-widest">
-                        {showCreateForm ? 'Node Setup' : 'Network Overview'}
+                        {showCreateForm ? 'Channel Setup' : 'Network Overview'}
                     </div>
                 </header>
 
@@ -144,17 +144,17 @@ const Dashboard = () => {
                     {showCreateForm ? (
                         <div className="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                             <h3 className="text-2xl font-bold text-gray-900 mb-2">Create Channel</h3>
-                            <p className="text-gray-500 mb-8 text-sm">Launch a new communication node for your team.</p>
+                            <p className="text-gray-500 mb-8 text-sm">Launch a new communication channel for your team.</p>
                             <form onSubmit={handleCreateRoom} className="space-y-6">
                                 <div>
-                                    <label className="text-xs font-bold uppercase text-gray-400 block mb-2 tracking-wider">Node Name</label>
+                                    <label className="text-xs font-bold uppercase text-gray-400 block mb-2 tracking-wider">Channel Name</label>
                                     <input className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm font-medium" 
                                         onChange={(e) => setRoomForm({...roomForm, name: e.target.value})} required placeholder="e.g. engineering-team" />
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold uppercase text-gray-400 block mb-2 tracking-wider">System Description</label>
                                     <input className="w-full p-3.5 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all text-sm font-medium" 
-                                        onChange={(e) => setRoomForm({...roomForm, description: e.target.value})} placeholder="What is the purpose of this node?" />
+                                        onChange={(e) => setRoomForm({...roomForm, description: e.target.value})} placeholder="What is the purpose of this channel?" />
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold uppercase text-gray-400 block mb-2 tracking-wider">Classification</label>
