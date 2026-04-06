@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import '../App.css'; // Importing our new styles
 
 const RegisterForm = () => {
     const [username, setUsername] = useState('');
@@ -12,46 +11,42 @@ const RegisterForm = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/api/auth/register', { username, password });
-            alert('Account created successfully! You can now log in.');
-            navigate('/'); // This will smoothly redirect to the login page
+            alert('Account created successfully!');
+            navigate('/');
         } catch (err) {
             alert('Registration failed. Username might already exist.');
         }
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <div className="auth-header">
-                    <h2>Create an Account</h2>
-                    <p>Join Nexus Chat to start collaborating.</p>
+        <div className="flex items-center justify-center min-h-screen p-4 bg-gray-50">
+            <div className="w-full max-w-md p-8 bg-white shadow-xl rounded-2xl">
+                <div className="mb-8 text-center">
+                    <h2 className="text-3xl font-extrabold text-gray-900">Get Started</h2>
+                    <p className="mt-2 text-sm text-gray-500">Create your Nexus profile</p>
                 </div>
-                
-                <form className="auth-form" onSubmit={handleRegister}>
-                    <div className="input-group">
-                        <input 
-                            type="text" 
-                            className="auth-input" 
-                            placeholder="Choose a Username" 
-                            onChange={e => setUsername(e.target.value)} 
-                            required 
-                        />
-                    </div>
-                    <div className="input-group">
-                        <input 
-                            type="password" 
-                            className="auth-input" 
-                            placeholder="Choose a Password" 
-                            onChange={e => setPassword(e.target.value)} 
-                            required 
-                        />
-                    </div>
-                    <button type="submit" className="auth-button">Register</button>
+                <form className="space-y-6" onSubmit={handleRegister}>
+                    <input 
+                        type="text" 
+                        placeholder="Choose Username" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                        onChange={e => setUsername(e.target.value)} 
+                        required 
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Choose Password" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                        onChange={e => setPassword(e.target.value)} 
+                        required 
+                    />
+                    <button type="submit" className="w-full py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transform active:scale-95 transition-all">
+                        Create Account
+                    </button>
                 </form>
-
-                <div className="auth-footer">
-                    <p>Already have an account? <Link to="/">Sign in here</Link></p>
-                </div>
+                <p className="mt-6 text-center text-sm text-gray-600">
+                    Already have an account? <Link to="/" className="font-bold text-indigo-600 hover:underline">Sign in</Link>
+                </p>
             </div>
         </div>
     );

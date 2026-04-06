@@ -1,63 +1,53 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // 1. We MUST import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../App.css';
 
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // 2. We MUST initialize the hook here
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:5000/api/auth/login', { username, password });
-            
-            // Save the token so the user stays logged in
             localStorage.setItem('token', res.data.token);
-            
-            // 3. SUCCESS! Instead of an alert, we move to the dashboard
+            localStorage.setItem('username', username);
             navigate('/dashboard'); 
-            
         } catch (err) {
-            // We only show an alert if something goes wrong
             alert('Login failed. Please check your credentials.');
         }
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <div className="auth-header">
-                    <h2>Welcome to Nexus Chat</h2>
-                    <p>Enter your credentials to access the workspace.</p>
+        <div className="flex items-center justify-center min-h-screen p-4 bg-gray-50">
+            <div className="w-full max-w-md p-8 bg-white shadow-xl rounded-2xl">
+                <div className="mb-8 text-center">
+                    <h2 className="text-3xl font-extrabold text-gray-900">Welcome back</h2>
+                    <p className="mt-2 text-sm text-gray-500">Sign in to your workspace</p>
                 </div>
-                
-                <form className="auth-form" onSubmit={handleLogin}>
-                    <div className="input-group">
-                        <input 
-                            type="text" 
-                            className="auth-input" 
-                            placeholder="Username" 
-                            onChange={e => setUsername(e.target.value)} 
-                            required 
-                        />
-                    </div>
-                    <div className="input-group">
-                        <input 
-                            type="password" 
-                            className="auth-input" 
-                            placeholder="Password" 
-                            onChange={e => setPassword(e.target.value)} 
-                            required 
-                        />
-                    </div>
-                    <button type="submit" className="auth-button">Sign In</button>
+                <form className="space-y-6" onSubmit={handleLogin}>
+                    <input 
+                        type="text" 
+                        placeholder="Username" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                        onChange={e => setUsername(e.target.value)} 
+                        required 
+                    />
+                    <input 
+                        type="password" 
+                        placeholder="Password" 
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
+                        onChange={e => setPassword(e.target.value)} 
+                        required 
+                    />
+                    <button type="submit" className="w-full py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transform active:scale-95 transition-all">
+                        Sign In
+                    </button>
                 </form>
-
-                <div className="auth-footer">
-                    <p>Don't have an account? <Link to="/register">Create one now</Link></p>
-                </div>
+                <p className="mt-6 text-center text-sm text-gray-600">
+                    Don't have an account? <Link to="/register" className="font-bold text-indigo-600 hover:underline">Register here</Link>
+                </p>
             </div>
         </div>
     );

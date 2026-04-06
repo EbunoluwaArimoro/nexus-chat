@@ -29,4 +29,15 @@ router.post('/create', verifyToken, async (req, res) => {
     }
 });
 
+// 3. Get a single room's details by ID
+router.get('/:id', verifyToken, async (req, res) => {
+    try {
+        const room = await ChatRoom.findById(req.params.id);
+        if (!room) return res.status(404).json({ error: "Room not found" });
+        res.json(room);
+    } catch (err) {
+        res.status(500).json({ error: "Server error fetching room details" });
+    }
+});
+
 module.exports = router;
